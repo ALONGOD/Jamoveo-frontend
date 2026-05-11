@@ -17,12 +17,12 @@ export const Navbar = () => {
           <span className="truncate text-sm font-semibold text-neutral-100">
             {user.username}
             {user.role === 'admin' && (
-              <span className="ml-1.5 rounded-md bg-amber-500/20 px-1.5 py-0.5 text-[10px] font-bold uppercase text-amber-300">
+              <span className="ml-1.5 hidden rounded-md bg-amber-500/20 px-1.5 py-0.5 text-[10px] font-bold uppercase text-amber-300 sm:inline">
                 admin
               </span>
             )}
           </span>
-          <span className="hidden truncate text-xs text-neutral-400 sm:inline">
+          <span className="truncate text-xs text-neutral-400">
             {INSTRUMENT_LABELS[user.instrument]}
           </span>
         </div>
