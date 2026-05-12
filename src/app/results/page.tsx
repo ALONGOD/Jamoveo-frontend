@@ -104,7 +104,7 @@ const ResultsContent = () => {
           <p className="mb-4 rounded-md bg-red-500/10 px-3 py-2 text-sm text-red-300">{error}</p>
         )}
 
-        {isLoadingResults && <p className="text-neutral-400">Searching Tab4U...</p>}
+        {isLoadingResults && <p className="text-neutral-400">Searching...</p>}
 
         {!isLoadingResults && results && results.length === 0 && (
           <p className="text-neutral-400">No songs found. Try a different query.</p>

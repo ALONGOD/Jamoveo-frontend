@@ -127,7 +127,7 @@ export const AdminSearch = () => {
           <div className="mb-2 flex items-center justify-between text-xs text-neutral-400">
             <span>
               {isSearching
-                ? 'Searching Tab4U...'
+                ? 'Searching...'
                 : results.length > 0
                   ? `${results.length} ${results.length === 1 ? 'result' : 'results'}`
                   : 'No matches'}
