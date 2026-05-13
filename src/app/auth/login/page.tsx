@@ -29,7 +29,7 @@ export default function LoginPage() {
   };
 
   return (
-    <AuthCard title="Welcome back" subtitle="Sign in to join the rehearsal">
+    <AuthCard title="Welcome back" subtitle="Log in to join the rehearsal">
       <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label className="mb-1 block text-sm font-medium text-neutral-300">Username</label>
@@ -66,7 +66,7 @@ export default function LoginPage() {
           disabled={isSubmitting}
           className="w-full rounded-lg bg-brand py-2 font-semibold transition hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {isSubmitting ? 'Signing in...' : 'Sign in'}
+          {isSubmitting ? 'Logging in...' : 'Log in'}
         </button>
       </form>
 
