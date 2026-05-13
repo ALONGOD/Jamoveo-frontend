@@ -81,7 +81,7 @@ export const InstrumentSelect = ({ value, onChange, hasError, id }: Props) => {
         <ul
           role="listbox"
           aria-label="Instrument"
-          className="absolute z-30 mt-1.5 max-h-72 w-full overflow-auto rounded-lg border border-neutral-700 bg-neutral-900 py-1 shadow-2xl ring-1 ring-black/40"
+          className="absolute z-30 mt-0.5 max-h-72 w-full overflow-auto rounded-lg border border-neutral-700 bg-neutral-900 py-1 shadow-2xl ring-1 ring-black/40"
         >
           {INSTRUMENT_OPTIONS.map((option) => {
             const isSelected = option === value;
