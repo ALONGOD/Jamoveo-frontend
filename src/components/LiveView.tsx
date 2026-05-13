@@ -21,7 +21,16 @@ export const LiveView = ({ song, lyricsOnly }: LiveViewProps) => {
 
   return (
     <section className="px-3 pb-32 pt-6 sm:px-6 md:px-8">
-      <header className="mx-auto mb-6 max-w-5xl text-center sm:mb-8">
+      <header className="mx-auto mb-6 flex max-w-5xl flex-col items-center text-center sm:mb-8">
+        {song.image && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={song.image}
+            alt=""
+            className="mb-3 h-20 w-20 rounded-xl object-cover shadow-lg sm:h-24 sm:w-24 md:mb-4 md:h-32 md:w-32"
+            referrerPolicy="no-referrer"
+          />
+        )}
         <h1 className="text-2xl font-bold sm:text-3xl md:text-5xl" dir="auto">
           {song.title}
         </h1>

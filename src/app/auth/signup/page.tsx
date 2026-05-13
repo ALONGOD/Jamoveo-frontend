@@ -69,7 +69,7 @@ export default function SignupPage() {
             className="w-full rounded-lg border border-neutral-700 bg-neutral-800 px-3 py-2 outline-none focus:border-brand"
             {...register('password', {
               required: 'Password is required',
-              minLength: { value: 6, message: 'At least 6 characters' },
+              minLength: { value: 6, message: 'Password must have at least 6 characters' },
             })}
           />
           {errors.password && (
@@ -105,6 +105,14 @@ export default function SignupPage() {
         Already have an account?{' '}
         <Link href="/auth/login" className="font-medium text-brand-light hover:underline">
           Sign in
+        </Link>
+      </p>
+
+      {/* Admin signup is a separate flow gated by a shared secret (see README). */}
+      <p className="mt-2 text-center text-xs text-neutral-500">
+        Band admin?{' '}
+        <Link href="/auth/admin-signup" className="underline hover:text-neutral-300">
+          Register here
         </Link>
       </p>
     </AuthCard>

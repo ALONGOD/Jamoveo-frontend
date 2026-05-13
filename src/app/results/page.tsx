@@ -64,7 +64,7 @@ const ResultsContent = () => {
         '/songs/fetch',
         { params: { url: item.sourceUrl } }
       );
-      selectSong(data.song);
+      selectSong({ ...data.song, image: item.image });
       // Server will broadcast song:current; SocketContext routes us to /live
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Failed to load song');
@@ -110,7 +110,7 @@ const ResultsContent = () => {
           <p className="text-neutral-400">No songs found. Try a different query.</p>
         )}
 
-        <ul className="grid gap-3">
+        <ul className="grid grid-cols-1 gap-3">
           {results?.map((item) => (
             <li key={item.id}>
               <button

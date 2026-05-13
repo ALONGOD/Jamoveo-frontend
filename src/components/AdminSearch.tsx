@@ -80,7 +80,7 @@ export const AdminSearch = () => {
         '/songs/fetch',
         { params: { url: item.sourceUrl } }
       );
-      selectSong(data.song);
+      selectSong({ ...data.song, image: item.image });
       // SocketContext routes everyone to /live on song:current
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Failed to load song');
@@ -141,7 +141,7 @@ export const AdminSearch = () => {
             </p>
           )}
 
-          <ul className="grid gap-2">
+          <ul className="grid grid-cols-1 gap-2">
             {results.map((item) => (
               <li key={item.id}>
                 <button

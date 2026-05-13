@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { clsx } from 'clsx';
 
 const SPEED_OPTIONS = [
-  { label: '½x', value: 0.5 },
+  { label: '0.5x', value: 0.5 },
   { label: '1x', value: 1 },
   { label: '2x', value: 2 },
 ] as const;
@@ -40,8 +40,12 @@ export const AutoScrollToggle = () => {
           type="button"
           onClick={() => setIsScrolling((s) => !s)}
           aria-label={isScrolling ? 'Stop auto scroll' : 'Start auto scroll'}
+          // whitespace-nowrap prevents the label from wrapping inside the button
+          // on narrow screens — without it, "Auto scroll" wraps onto multiple
+          // lines, the button becomes near-square, and `rounded-full` then
+          // visually turns it into a giant circle.
           className={clsx(
-            'rounded-full px-4 py-2 text-sm font-semibold transition sm:px-5 sm:py-2.5 sm:text-base',
+            'whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold transition sm:px-5 sm:py-2.5 sm:text-base',
             isScrolling
               ? 'bg-red-600 text-white hover:bg-red-700'
               : 'bg-brand text-white hover:bg-brand-dark'
