@@ -58,10 +58,10 @@ export const INSTRUMENT_LABELS: Record<Instrument, string> = {
 };
 
 export const INSTRUMENT_OPTIONS: Instrument[] = [
+  'vocals',
   'drums',
   'guitar',
   'bass',
   'saxophone',
   'keyboards',
-  'vocals',
 ];
