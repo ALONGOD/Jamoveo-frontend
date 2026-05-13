@@ -7,6 +7,7 @@ import { useSocket } from '@/contexts/SocketContext';
 import { useDebouncedValue } from '@/hooks/useDebouncedValue';
 import { createApiClient } from '@/lib/api';
 import { Song, SongSearchResult } from '@/types';
+import { PresenceList } from './PresenceList';
 
 const MIN_QUERY_LEN = 2;
 const DEBOUNCE_MS = 300;
@@ -120,6 +121,9 @@ export const AdminSearch = () => {
           Search
         </button>
       </form>
+
+      {/* Show who's connected only while idle — once results appear we get out of the way */}
+      {!showResultsPanel && <PresenceList className="mt-6 w-full" />}
 
       {/* Inline live results — appears while user types so they can pick instantly */}
       {showResultsPanel && (

@@ -1,6 +1,7 @@
 'use client';
 
 import { Logo } from './Logo';
+import { PresenceList } from './PresenceList';
 
 export const PlayerWaiting = () => {
   return (
@@ -10,6 +11,7 @@ export const PlayerWaiting = () => {
       <p className="mt-4 max-w-md text-sm text-neutral-400 sm:text-base">
         Hang tight — once the admin picks a song, you&apos;ll be moved to the live page automatically.
       </p>
+      <PresenceList className="mt-8 w-full max-w-md" />
     </main>
   );
 };

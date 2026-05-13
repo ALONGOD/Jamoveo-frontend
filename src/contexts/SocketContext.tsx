@@ -14,11 +14,12 @@ import { useRouter } from 'next/navigation';
 import type { Socket } from 'socket.io-client';
 import { useAuth } from './AuthContext';
 import { createSocket } from '@/lib/socket';
-import { Song } from '@/types';
+import { ConnectedUser, Song } from '@/types';
 
 interface SocketContextValue {
   isConnected: boolean;
   currentSong: Song | null;
+  connectedUsers: ConnectedUser[];
   selectSong: (song: Song) => void;
   quitSession: () => void;
 }
@@ -26,6 +27,7 @@ interface SocketContextValue {
 const SocketContext = createContext<SocketContextValue>({
   isConnected: false,
   currentSong: null,
+  connectedUsers: [],
   selectSong: () => {},
   quitSession: () => {},
 });
@@ -36,6 +38,7 @@ export const SocketProvider = ({ children }: PropsWithChildren) => {
   const socketRef = useRef<Socket | null>(null);
   const [isConnected, setIsConnected] = useState(false);
   const [currentSong, setCurrentSong] = useState<Song | null>(null);
+  const [connectedUsers, setConnectedUsers] = useState<ConnectedUser[]>([]);
 
   useEffect(() => {
     if (!isAuthenticated || !token) {
@@ -43,6 +46,7 @@ export const SocketProvider = ({ children }: PropsWithChildren) => {
       socketRef.current = null;
       setIsConnected(false);
       setCurrentSong(null);
+      setConnectedUsers([]);
       return;
     }
 
@@ -68,6 +72,11 @@ export const SocketProvider = ({ children }: PropsWithChildren) => {
       router.push('/');
     });
 
+    // Server pushes a fresh deduped list whenever someone joins/leaves
+    socket.on('presence:list', ({ users }: { users: ConnectedUser[] }) => {
+      setConnectedUsers(users);
+    });
+
     return () => {
       socket.disconnect();
       socketRef.current = null;
@@ -83,8 +92,8 @@ export const SocketProvider = ({ children }: PropsWithChildren) => {
   }, []);
 
   const value = useMemo(
-    () => ({ isConnected, currentSong, selectSong, quitSession }),
-    [isConnected, currentSong, selectSong, quitSession]
+    () => ({ isConnected, currentSong, connectedUsers, selectSong, quitSession }),
+    [isConnected, currentSong, connectedUsers, selectSong, quitSession]
   );
 
   return <SocketContext.Provider value={value}>{children}</SocketContext.Provider>;

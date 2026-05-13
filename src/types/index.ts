@@ -15,6 +15,14 @@ export interface AppUser {
   instrument: Instrument;
 }
 
+// Mirrors the JwtPayload shape the backend broadcasts in `presence:list`.
+export interface ConnectedUser {
+  userId: string;
+  username: string;
+  role: Role;
+  instrument: Instrument;
+}
+
 export interface SongToken {
   chord?: string;
   lyric: string;

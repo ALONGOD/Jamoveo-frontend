@@ -6,6 +6,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useSocket } from '@/contexts/SocketContext';
 import { LiveView } from '@/components/LiveView';
 import { AutoScrollToggle } from '@/components/AutoScrollToggle';
+import { PresenceList } from '@/components/PresenceList';
 
 export default function LivePage() {
   const router = useRouter();
@@ -38,6 +39,10 @@ export default function LivePage() {
     <div className="min-h-screen bg-neutral-950 text-neutral-100">
       <LiveView song={currentSong} lyricsOnly={lyricsOnly} />
       <AutoScrollToggle />
+
+      {/* Tiny presence chip top-left — confirms the room is intact mid-song
+          without competing with the lyrics. Visible to everyone. */}
+      <PresenceList variant="badge" className="fixed left-3 top-3 z-30 sm:left-4 sm:top-4" />
 
       {user.role === 'admin' && (
         <button
