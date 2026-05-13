@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { Controller, useForm } from 'react-hook-form';
 import { useAuth } from '@/contexts/AuthContext';
 import { AuthCard } from '@/components/AuthCard';
@@ -109,6 +110,19 @@ export default function AdminSignupPage() {
           {isSubmitting ? 'Creating...' : 'Create admin account'}
         </button>
       </form>
+
+      <p className="mt-6 text-center text-sm text-neutral-400">
+        Already have an account?{' '}
+        <Link href="/auth/login" className="font-medium text-brand-light hover:underline">
+          Sign in
+        </Link>
+      </p>
+      <p className="mt-2 text-center text-xs text-neutral-500">
+        Not an admin?{' '}
+        <Link href="/auth/signup" className="underline hover:text-neutral-300">
+          Regular signup
+        </Link>
+      </p>
     </AuthCard>
   );
 }
