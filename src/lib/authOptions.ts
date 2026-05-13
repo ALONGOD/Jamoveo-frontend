@@ -48,7 +48,7 @@ const refreshBackendToken = async (expiredToken: string): Promise<string | null>
 };
 
 export const authOptions: NextAuthOptions = {
-  session: { strategy: 'jwt', maxAge: 60 * 60 },
+  session: { strategy: 'jwt' },
   pages: { signIn: '/auth/login' },
   providers: [
     // Standard username/password login
